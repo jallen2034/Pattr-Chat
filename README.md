@@ -1,8 +1,8 @@
 ## Project Description
 
-Created by Bryce McLachlan, Jacob Allen, and Paxon Cheung.
-
 Pattr is a corporate channel-based instant messaging React application that allows users to create Organizations with public channels and private conversations for each organization they are part of.
+
+Created by Bryce McLachlan, Jacob Allen, and Paxon Cheung.
 
 ## Tech Stack
 
