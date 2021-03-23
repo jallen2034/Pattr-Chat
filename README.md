@@ -33,6 +33,20 @@ Then run `npm run install-all`.
 - React Toastify
 - GraphQL
 
+## Planned features for future release 
+
+- Emoji picker
+- Editing messages
+- Deleting messages
+- Message reactions
+- Read receipts
+- Kicking people from private chats
+- Editing profile display names and pictures 
+- Sending images
+- Sending gifs
+- Profile pictures
+- Sending videos
+
 ## Screenshots
 
 Login page:
