@@ -33,7 +33,7 @@ Then run `npm run install-all`.
 - React Toastify
 - GraphQL
 
-## Planned features for future release 
+## Planned features & fixes for future release 
 
 - Emoji picker
 - Editing messages
