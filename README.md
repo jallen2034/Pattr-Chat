@@ -47,6 +47,10 @@ Then run `npm run install-all`.
 - Profile pictures
 - Sending videos
 
+## Video Demo
+
+https://streamable.com/o6admu
+
 ## Screenshots
 
 Login page:
