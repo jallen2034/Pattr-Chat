@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import { useEffect } from 'react'
 
-// style text field in composer component
+// style composer component
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
 /* composer component - uses material ui's multiline text/input field
  * https://material-ui.com/components/text-fields/#multiline */
 const Composer = ({ value, setValue, currentState, sendMessage }) => {
+  
   // clear message when user clicks on a different conversation (currentState changes) - bug squash
   useEffect(() => {
     setValue('')

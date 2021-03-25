@@ -12,12 +12,8 @@ const useChannels = ({ currentState, setCurrentState, currentUser }) => {
     variables: { userId: currentUser.id }
   })
 
-  // grab this hook, which stores the data back from graphql with live data of users current private channels and conversations
-  const {
-    loading: loadingPrivate,
-    error: errorPrivate,
-    data: dataPrivate
-  } = useSubscription(GET_PRIVATE_CHANNELS, {
+  // grab this hook. stores the data back from graphql with live data of users current private channels & conversations
+  const {loading: loadingPrivate, error: errorPrivate, data: dataPrivate} = useSubscription(GET_PRIVATE_CHANNELS, {
     variables: { userId: currentUser.id }
   })
   const error = errorPrivate || errorPublic
@@ -36,6 +32,7 @@ const useChannels = ({ currentState, setCurrentState, currentUser }) => {
       )
     }
   }, [ready, setChannels, dataPublic])
+
   // sets the currently selected channel to be something the user has access to
   useEffect(() => {
     if (ready) {
@@ -49,8 +46,8 @@ const useChannels = ({ currentState, setCurrentState, currentUser }) => {
               })
               .includes(mutatedState.channel)
           ) {
-            /* if above evals to true, we reach this code. we check if that users data.users_by_pk.channels.length is more than 0
-             * if it is, we then set the mutated states .channel property to = data.users_by_pk.channels[0].id, setting a default channel
+            /* if above evals to true, check if that users data.users_by_pk.channels.length is more than 0
+             * if it is, then set the mutated states .channel property to = data.users_by_pk.channels[0].id, setting a default channel
              * else this logged in user is removed from the last channel they can see in their list */
             if (channels.length > 0) {
               mutatedState.channel = channels[0].id
@@ -67,6 +64,7 @@ const useChannels = ({ currentState, setCurrentState, currentUser }) => {
       })
     }
   }, [ready, setCurrentState, channels])
+
   // sets all the conversations that the user can access
   useEffect(() => {
     if (ready) {
@@ -78,15 +76,16 @@ const useChannels = ({ currentState, setCurrentState, currentUser }) => {
     privateConversations,
     setCurrentConversations
   ])
+
   // sets the currently selected conversation to be something the user has access to
   useEffect(() => {
     if (ready) {
       setCurrentState((cs) => {
         const mutatedState = { ...cs }
         try {
-          /* this is to handle an instance where a user might delete a conversation
-           * map through currentConversations array we collected above, on each iteration, return the conversation.id
-           * on each passthrough of the loop in this map, ensure the conversation.id is included with the mutatedStates conversation */
+          /* handle an instance where a user might delete a conversation
+           * map through currentConversations array above, on each iteration, return the conversation.id
+           * on each passthrough of the loop, ensure the conversation.id is included with the mutatedStates conversation */
           if (
             !currentConversations
               .map((conversation) => {
@@ -95,7 +94,7 @@ const useChannels = ({ currentState, setCurrentState, currentUser }) => {
               .includes(mutatedState.conversation)
           ) {
             /* if above evaluates to false, check if they have any valid conversations.
-             * setting a default channel, set the first conversation from currentConversations[0].id as their default selected
+             * setting a default channel - set the first conversation from currentConversations[0].id as the default selected
              * else they don't have any conversations, don't show anything in the sidebar */
             if (currentConversations.length > 0) {
               mutatedState.conversation = currentConversations[0].id
@@ -116,8 +115,8 @@ const useChannels = ({ currentState, setCurrentState, currentUser }) => {
     }
   }, [setCurrentState, ready, currentConversations])
 
+  // show our conversation for a users selected channel
   useEffect(() => {
-    /* show our conversation for a users selected channel */
     if (ready) {
       try {
         setPrivateConversations(
@@ -132,8 +131,9 @@ const useChannels = ({ currentState, setCurrentState, currentUser }) => {
       }
     }
   }, [ready, currentState.channel, dataPrivate])
+
+  // show our conversation for a users selected channel, otherwise user has no conversations in the selected channel
   useEffect(() => {
-    /* show our conversation for a users selected channel */
     if (ready) {
       try {
         setPublicConversations(
@@ -142,7 +142,6 @@ const useChannels = ({ currentState, setCurrentState, currentUser }) => {
           }).conversations
         )
       } catch {
-        // user has no conversations in the selected channel
         setPublicConversations([])
       }
     }

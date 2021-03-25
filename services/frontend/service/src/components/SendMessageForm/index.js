@@ -26,20 +26,13 @@ const useStyles = makeStyles((theme) => ({
 /* helper function to handle the submission of the form in this controlled componentt
  * clear the controlled component after sending a message with graphql to our db
  * also handles the sending message status indicator */
-const handleSubmitForm = (
-  event,
-  message,
-  sendMessage,
-  currentUser,
-  currentState,
-  setMessage,
-  setSendingMessage
-) => {
+const handleSubmitForm = (event, message, sendMessage, currentUser, currentState, setMessage, setSendingMessage) => {
   event.preventDefault()
   setMessage('')
   setSendingMessage((cs) => {
     return [...cs, true]
   })
+
   // call setter to actually get graphql to send th emessage to our pg db
   return sendMessage({
     variables: {
@@ -85,12 +78,8 @@ const SEND_MESSAGES = gql`
 `
 
 // component to send the message from the form
-function SendMessageForm ({
-  currentUser,
-  currentState,
-  sendingMessage,
-  setSendingMessage
-}) {
+function SendMessageForm ({currentUser, currentState, sendingMessage,setSendingMessage}) {
+  
   // state to store what the user types in the composer as a controlled component
   const [message, setMessage] = useState('')
   const classes = useStyles()

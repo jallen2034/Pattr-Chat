@@ -50,18 +50,10 @@ const renderLogin = function (event, setRegister) {
   setRegister(false)
 }
 
-/* helper function to set the users token, uid and display name in our applications state,
- * also makes the user in our db with graphql, apollo + postgress
- * makeUser returns a promise after it inserts the user into our postgress db, in the .then
- * we update our currentUsr state with setCurrentUser + set our local storages uid to the uid the makeUseer function
- * returns in its .then */
-const registerAuth = function (
-  email,
-  password,
-  displayname,
-  setCurrentUser,
-  makeUser
-) {
+/* set the users token, uid and display name in our applications state, also makes the user in our db with graphql, apollo + postgress
+ * makeUser returns a promise after it inserts the user into our postgress db, in the .then we update our currentUsr 
+ * state with setCurrentUser + set our local storages uid to the uid the makeUseer function returns in its .then */
+const registerAuth = function (email, password, displayname, setCurrentUser, makeUser) {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -85,15 +77,15 @@ const registerAuth = function (
     })
 }
 
-// sign up component in this app
+// sign up component
 const SignUp = ({ setRegister, setCurrentUser }) => {
   const classes = useStyles()
   const [email, setEmail] = useState('')
   const [displayname, setDisplayname] = useState('')
   const [password, setPassword] = useState('')
 
-  // makeUser/mutation hook which uses our above mutation and stores it in our components state
-  // makeUser is a function we destructure from useMutation(), its a function that returns a promise
+  /* makeUser/mutation hook which uses our above mutation and stores it in our components state
+   * makeUser is a function we destructure from useMutation(), its a function that returns a promise */
   const [makeUser] = useMutation(MAKE_USER)
 
   return (

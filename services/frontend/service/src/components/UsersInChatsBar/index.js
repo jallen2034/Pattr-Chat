@@ -9,7 +9,6 @@ const IS_PUBLIC_OR_PRIVATE = gql`
     }
   }
 `
-
 // subscription to get all users in a currently selected private chat
 const GET_USERS_IN_PRIVATE_CHATS = gql`
   subscription ($conversationId: Int!) {
@@ -29,9 +28,8 @@ const GET_USERS_IN_PUBLIC_CHATS = gql`
   }
 `
 
-// sign up component in this app
+// sign up component in this app + array to store the users in a chat
 const UsersInChatsBar = ({ currentState, avatarColor, setAvatarColor }) => {
-  // array to store the users in a chat
   const usersInChat = []
 
   // hook to check if user is selected a public or private chat

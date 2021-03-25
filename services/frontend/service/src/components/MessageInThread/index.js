@@ -3,6 +3,7 @@ import Avatar from './Avatar'
 import MessageMetadata from './MessageMetadata'
 import Paper from '@material-ui/core/Paper'
 import clsx from 'clsx'
+
 // style MessageInThread component
 const useStyles = makeStyles((theme) => ({
   messageContainer: {

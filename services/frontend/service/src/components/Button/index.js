@@ -1,4 +1,5 @@
-import { default as MaterialButton } from '@material-ui/core/Button' // eslint-disable-line import/no-named-default
+// eslint-disable-line import/no-named-default
+import { default as MaterialButton } from '@material-ui/core/Button'
 
 function Button ({ color = 'primary', variant = 'contained', children }) {
   return (
@@ -10,5 +11,5 @@ function Button ({ color = 'primary', variant = 'contained', children }) {
   )
 }
 
-// export our default Button component we declared above
+// export default Button component we declared above
 export default Button

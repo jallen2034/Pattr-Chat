@@ -22,6 +22,7 @@ const ADD_USERS_TO_CONVERSATION = gql`
     }
   }
 `
+
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
@@ -35,13 +36,14 @@ const useStyles = makeStyles({
 
 // simple dialog component to render the user click options
 function SimpleDialog ({ setOpen, open, usersForChats, currentState }) {
+
   // declare our useMutation to add users to conversations here, pass the setter down later
   const [addUserConversation] = useMutation(ADD_USERS_TO_CONVERSATION)
   const classes = useStyles()
 
-  // helper function to handle a user click and add a person to a conversation
+  /* helper function to handle a user click and add a person to a conversation
+   * call addUserConversation adding the current conversation selected in state to the */
   const handleListItemClick = (userId, currentState, addUserConversation) => {
-    // call addUserConversation adding the current conversation selected in state to the
     addUserConversation({
       variables: {
         userId: userId,

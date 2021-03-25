@@ -19,8 +19,7 @@ const renderRegister = function (event, setRegister) {
 }
 
 /* helper function that will be called when the user submits the form for the sign in button with email + pw info
- * Firebase auth to sign in then set the userToken in the parent component to true
- * otherwise catch and display errors - using material UI? */
+ * Firebase auth to sign in then set the userToken in the parent component to true, otherwise catch and display errors */
 const loginAuth = function (email, password, setCurrentUser) {
   firebase
     .auth()
@@ -63,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-/* render sign in component this uses firebase to authenticate and login a user with firebase with their inputted
+/* render sign in component. uses firebase to authenticate and login a user with firebase with their inputted
  * email and password we need to store the email and password in state in this grandparent component to do this
  * https://stackoverflow.com/questions/57810595/material-ui-how-to-extract-the-value-of-the-text-field
  * https://stackoverflow.com/questions/56387947/access-promise-resolve-in-on-click-handler-in-react */
@@ -122,11 +121,6 @@ const SignIn = ({ setRegister, setCurrentUser }) => {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
-              {/* <Link href='#' variant='body2'>
-                Forgot password?
-              </Link> */}
-            </Grid>
             <Grid item>
               <Link
                 onClick={(e) => renderRegister(e, setRegister)}

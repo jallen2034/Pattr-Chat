@@ -33,7 +33,6 @@ const GET_MESSAGES = gql`
 
 // component to handle all the messages in the message pane
 function MessagesPane ({ currentState, currentUser, setSendingMessage, avatarColor, setAvatarColor }) {
-  // call and use graphql query to get messages via subscription/web socket
   const { loading, error, data } = useSubscription(GET_MESSAGES, {
     variables: {
       conversationId: currentState.conversation
@@ -85,15 +84,14 @@ function MessagesPane ({ currentState, currentUser, setSendingMessage, avatarCol
       return message
     })
   } catch {
-    // if conversation doesn't have any messages
+    // if conversation has no messages
   }
-  /* map out filtered messages, then loop through them and make new messages for each one
-   * passing down props when necessary */
+  // map out filtered messages, then loop through them, make new messages for each one passing down props when necessary
   const mappedMessages = messages.map(({ user, message, date_sent, id }) => {
     return (
       <MessageInThread
         key={id}
-        date={date_sent} // eslint-disable-line camelcase
+        date={date_sent}
         messageText={message.text}
         messageName={user.display_name}
         currentUser={user.currentUser}

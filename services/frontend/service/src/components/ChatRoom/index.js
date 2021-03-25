@@ -24,7 +24,7 @@ import Spinner from '../Spinner'
     > me when I find another instant messaging bug
 */
 
-// fetch graphql query which when used, will retrieve a user who just logged in
+// fetch graphql query when used, will retrieve a user who just logged in
 const FETCH_USER = gql`
   query($uuid: String!) {
     users(where: { user_uuid: { _eq: $uuid } }) {
@@ -35,6 +35,7 @@ const FETCH_USER = gql`
   }
 `
 
+// styling for this component
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -52,16 +53,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-/* chatroom component
- * also has a useQuery hook which uses our above graphql query we wrote */
-function ChatRoom ({
-  currentUser,
-  setCurrentUser,
-  currentState,
-  setCurrentState
-}) {
+// chatroom component, also has a useQuery hook, which uses our above graphql query
+function ChatRoom ({currentUser, setCurrentUser, currentState, setCurrentState}) {
   const classes = useStyles()
-
   const { loading, error, data } = useQuery(FETCH_USER, {
     variables: { uuid: currentUser.user_uuid }
   })

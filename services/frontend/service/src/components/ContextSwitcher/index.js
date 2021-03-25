@@ -1,12 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles'
 import DataWrapper from './DataWrapper'
+
+// styles for this component
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     height: '100%'
   }
 }))
-
 const setCurrentConversation = (setCurrentState, id) => {
   setCurrentState((cs) => {
     return {

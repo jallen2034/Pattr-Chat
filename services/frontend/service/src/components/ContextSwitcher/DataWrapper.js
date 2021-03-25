@@ -2,15 +2,11 @@ import Selector from './Selector'
 import Spinner from '../Spinner'
 import useChannels from './useChannels'
 import { useState, useEffect } from 'react'
-const DataWrapper = ({
-  currentUser,
-  currentState,
-  setCurrentState,
-  setCurrentChannel,
-  setCurrentConversation
-}) => {
-  const {
-    channels,
+
+// datawrapper component
+const DataWrapper = ({currentUser, currentState, setCurrentState, setCurrentChannel, setCurrentConversation}) => {
+  
+  const {channels,
     publicConversations,
     privateConversations,
     error,
@@ -21,6 +17,7 @@ const DataWrapper = ({
   const currentChannel = channels.filter((channel) => {
     return channel.id === currentState.channel
   })?.[0]
+
   const toggleChannelSelectorOpen = () => {
     if (currentChannel) {
       setValue((cs) => !cs)
@@ -28,6 +25,7 @@ const DataWrapper = ({
       setValue(true)
     }
   }
+
   useEffect(() => {
     if (!currentChannel) {
       setValue(true)

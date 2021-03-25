@@ -49,18 +49,17 @@ const useStyles = makeStyles({
 
 // simple dialog component to render the user click options
 function SimpleDialog ({ onClose, selectedValue, open, allUsers, channel }) {
+
   // declare our useMutation to add users to conversations here, pass the setter down later
   const [addUserChannel] = useMutation(ADD_USERS_TO_CHANNEL)
-
   const classes = useStyles()
-
   const handleClose = () => {
     onClose(selectedValue)
   }
 
-  // helper function to handle a user click and add a person to a conversation
+  /* helper function to handle a user click and add a person to a conversation
+   * call addUserConversation adding the current conversation selected in state to the */
   const handleListItemClick = (userId, channel, addUserChannel) => {
-    // call addUserConversation adding the current conversation selected in state to the
     addUserChannel({
       variables: {
         userId: userId,

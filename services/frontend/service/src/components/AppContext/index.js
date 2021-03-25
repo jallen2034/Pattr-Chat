@@ -16,11 +16,11 @@ import { getMainDefinition } from '@apollo/client/utilities'
 // import { setContext } from '@apollo/client/link/context';
 
 /* https://github.com/hasura/nodejs-graphql-subscriptions-boilerplate/issues/3
- * this is establishing urls to graphql from react for http & (full duplex) web sockets */
+ * establishing urls to graphql from react for http & (full duplex) web sockets */
 const HTTPS_URL = `https${process.env.REACT_APP_GRAPHQL_URL}`
 const WSS_URL = `wss${process.env.REACT_APP_GRAPHQL_URL}`
 
-// provides parameters for react to establish a http link to graphql later on
+// provides parameters for react to establish a http link to graphql
 const httpsLink = new HttpLink({
   uri: HTTPS_URL,
   headers: {
@@ -28,7 +28,7 @@ const httpsLink = new HttpLink({
   }
 })
 
-// provides parameters for react to establish a full duplex web socket link to graphql later on
+// provides parameters for react to establish a full duplex web socket link to graphql
 const wssLink = new WebSocketLink({
   uri: WSS_URL,
   options: {
@@ -41,7 +41,7 @@ const wssLink = new WebSocketLink({
   }
 })
 
-// this is the splitter that decides if a link being made will be http or a web socket link
+// splitter that decides if a link being made will be http or a web socket link
 const link = split(
   ({ query }) => {
     const definition = getMainDefinition(query)

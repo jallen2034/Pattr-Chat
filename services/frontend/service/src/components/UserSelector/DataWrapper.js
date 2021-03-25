@@ -29,9 +29,8 @@ const GET_USERS_IN_CHANNEL = gql`
   }
 `
 
-// DataWrapper component nested inside of UserSelector component
+// dataWrapper component nested inside of UserSelector component
 const DataWrapper = ({ currentState, setOpen, open }) => {
-  // grab this hook, which stores the data back from graphql with users that are in the users orginzation
   const { loading, error, data } = useQuery(GET_USERS_IN_CHANNEL, {
     variables: {
       channelId: currentState.channel,
@@ -44,8 +43,8 @@ const DataWrapper = ({ currentState, setOpen, open }) => {
    * into an array, in this hook to be referenced to later */
   const [usersForChats, setUsersForChats] = useState(null)
 
-  // this useEffect hook in this component only fires off when the data changes come back from graphql (error, data, loading)
-  // collects an array of users in the selected channel but not conversation
+  /* fires off when the data changes come back from graphql (error, data, loading)
+   * collects an array of users in the selected channel but not conversation */
   useEffect(() => {
     if (!loading && !error) {
       try {
@@ -54,8 +53,7 @@ const DataWrapper = ({ currentState, setOpen, open }) => {
     }
   }, [data, error, loading])
 
-  // this second useEffect hook ONLY triggers when the usersForChats array val changes from above, or setOpen val changes
-  // (or if SetOpen status changes)
+  // ONLY triggers when the usersForChats array val changes from above, or setOpen val changes (or if SetOpen status changes)
   useEffect(() => {
     if (usersForChats && usersForChats.length === 0) {
       toast.error('No users left in this channel to add to conversation!')

@@ -9,6 +9,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Check from '@material-ui/icons/Check'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { gql, useMutation } from '@apollo/client'
+
 const MAKE_CONVERSATION = gql`
   mutation(
     $conversationName: String!
@@ -60,24 +61,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const CreateTextSingleLine = ({
-  type = 'conversation',
-  currentUser,
-  currentState,
-  placeholder,
-  conversationPublic = true
-}) => {
+const CreateTextSingleLine = ({type = 'conversation', currentUser, currentState, placeholder, conversationPublic = true}) => {
   const classes = useStyles()
   const [text, setText] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [makeConversation] = useMutation(MAKE_CONVERSATION)
   const [makeChannel] = useMutation(MAKE_CHANNEL)
-  // used for testing without using apollo
-  // const makeConversation = async () => {
-  //   await new Promise((resolve) => {
-  //     setTimeout(resolve, 1000);
-  //   });
-  // };
 
   const submit = async (text) => {
     setSubmitting(true)
