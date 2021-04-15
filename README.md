@@ -49,7 +49,7 @@ Then run `npm run install-all`.
 
 ## Video Demo
 
-https://streamable.com/o6admu
+https://www.youtube.com/watch?v=bSgroyctBO4
 
 ## Screenshots
 
